@@ -1,0 +1,26 @@
+# src/CarnetBundle/Resources/config/routing.yml
+
+carnet_homepage:
+    path:      /
+    defaults:  { _controller: CarnetBundle:Advert:index }
+
+carnet_mescontacts:
+    path:      /mescontacts
+    defaults:  { _controller: CarnetBundle:Advert:mescontacts }
+
+carnet_list:
+    path:      /list
+    defaults:  { _controller: CarnetBundle:Advert:lister }
+
+carnet_ajouter:
+    path:      /ajouter/{id}
+    defaults:  { _controller: CarnetBundle:Advert:ajouter }
+
+carnet_supprimer:
+    path:      /supprimer/{id}
+    defaults:  { _controller: CarnetBundle:Advert:supprimer }
+
+carnet_profil:
+    path:      /profil
+    defaults:  { _controller: CarnetBundle:Advert:profil }
+

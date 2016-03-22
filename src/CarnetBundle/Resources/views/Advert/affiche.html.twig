@@ -1,0 +1,79 @@
+{% extends "CarnetBundle::layout.html.twig" %}
+
+{% block title %}
+    {{ parent() }} Profil
+{% endblock %}
+
+{% block body %}
+<div class="col-md-4 col-md-offset-4">
+    <center>Mon profil</center>
+    {{ form_start(form, {'attr': {'class': 'form-horizontal'}}) }}
+    <style>
+        table td {
+            border-top: none !important;
+        }
+    </style>
+    <table class="table">
+        <tr>
+            <td>
+                {{ form_label(form.username) }}
+            </td>
+            <td>
+                {{ form_widget(form.username) }}
+            </td>
+            {{ form_errors(form.username) }}
+        </tr>
+        <tr>
+            <td>
+                {{ form_label(form.email) }}
+            </td>
+            <td>
+                {{ form_widget(form.email) }}
+            </td>
+            {{ form_errors(form.email) }}
+        </tr>
+        <tr>
+            <td>
+                {{ form_label(form.nom) }}
+            </td>
+            <td>
+                {{ form_widget(form.nom) }}
+            </td>
+            {{ form_errors(form.nom) }}
+        </tr>
+        <tr>
+            <td>
+                {{ form_label(form.adresse) }}
+            </td>
+            <td>
+                {{ form_widget(form.adresse) }}
+            </td>
+            {{ form_errors(form.adresse) }}
+        </tr>
+        <tr>
+            <td>
+                {{ form_label(form.telephone) }}
+            </td>
+            <td>
+                {{ form_widget(form.telephone) }}
+            </td>
+            {{ form_errors(form.telephone) }}
+        </tr>
+        <tr>
+            <td>
+                {{ form_label(form.siteweb) }}
+            </td>
+            <td>
+                {{ form_widget(form.siteweb) }}
+            </td>
+            {{ form_errors(form.siteweb) }}
+        </tr>
+        <tr>
+            <td colspan="2">
+                <center>{{ form_widget(form.save, {'attr': {'class': 'btn btn-primary'}}) }}</center>
+            </td>
+        </tr>
+    </table>
+    {{ form_end(form) }}
+</div>
+{% endblock %}

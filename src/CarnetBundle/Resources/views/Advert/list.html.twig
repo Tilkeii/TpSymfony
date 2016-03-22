@@ -1,0 +1,37 @@
+{% extends "CarnetBundle::layout.html.twig" %}
+
+{% block title %}
+    {{ parent() }} Ajouter
+{% endblock %}
+
+
+{% block body %}
+    Ajouter un contact<br />
+    <table class="table table-striped">
+        {% for user in users %}
+            <tr>
+                <td>
+                    {{ user.nom }}
+                </td>
+                <td>
+                    {{ user.username }}
+                </td>
+                <td>
+                    {{ user.adresse }}
+                </td>
+                <td>
+                    {{ user.telephone }}
+                </td>
+                <td>
+                    {{ user.siteweb }}
+                </td>
+                <td>
+                    <a href="{{ path('carnet_ajouter', {'id': user.id}) }}">
+                        <button class="btn btn-success" type="button">Ajouter</button>
+                    </a>
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
+
+{% endblock %}

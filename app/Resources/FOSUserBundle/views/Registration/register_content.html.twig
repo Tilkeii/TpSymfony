@@ -1,0 +1,88 @@
+{% trans_default_domain 'FOSUserBundle' %}
+
+{{ form_start(form, {'method': 'post', 'action': path('fos_user_registration_register'), 'attr': {'class': 'fos_user_registration_register'}}) }}
+    <style>
+        table td {
+            border-top: none !important;
+        }
+    </style>
+    <table class="table">
+        <tr>
+            <td>
+                {{ form_label(form.username) }}
+            </td>
+            <td>
+                {{ form_widget(form.username) }}
+            </td>
+            {{ form_errors(form.username) }}
+        </tr>
+        <tr>
+            <td>
+                {{ form_label(form.email) }}
+            </td>
+            <td>
+                {{ form_widget(form.email) }}
+            </td>
+            {{ form_errors(form.email) }}
+        </tr>
+        <tr>
+            <td>
+                {{ form_label(form.plainPassword.first) }}
+            </td>
+            <td>
+                {{ form_widget(form.plainPassword.first) }}
+            </td>
+            {{ form_errors(form.plainPassword.first) }}
+        </tr>
+        <tr>
+            <td>
+                {{ form_label(form.plainPassword.second) }}
+            </td>
+            <td>
+                {{ form_widget(form.plainPassword.second) }}
+            </td>
+            {{ form_errors(form.plainPassword.second) }}
+        </tr>
+        <tr>
+            <td>
+                {{ form_label(form.nom) }}
+            </td>
+            <td>
+                {{ form_widget(form.nom) }}
+            </td>
+            {{ form_errors(form.nom) }}
+        </tr>
+        <tr>
+            <td>
+                {{ form_label(form.adresse) }}
+            </td>
+            <td>
+                {{ form_widget(form.adresse) }}
+            </td>
+            {{ form_errors(form.adresse) }}
+        </tr>
+        <tr>
+            <td>
+                {{ form_label(form.telephone) }}
+            </td>
+            <td>
+                {{ form_widget(form.telephone) }}
+            </td>
+            {{ form_errors(form.telephone) }}
+        </tr>
+        <tr>
+            <td>
+                {{ form_label(form.siteweb) }}
+            </td>
+            <td>
+                {{ form_widget(form.siteweb) }}
+            </td>
+            {{ form_errors(form.siteweb) }}
+        </tr>
+        <tr>
+            <td colspan="2">
+                <center><input type="submit" value="{{ 'registration.submit'|trans }}" /></center>
+            </td>
+        </tr>
+    </table>
+{{ form_end(form) }}

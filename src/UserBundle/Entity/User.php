@@ -1,0 +1,249 @@
+<?php
+// src/AppBundle/Entity/User.php
+
+namespace UserBundle\Entity;
+
+use FOS\UserBundle\Model\User as BaseUser;
+use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+
+/**
+ * @ORM\Entity(repositoryClass="UserBundle\Repository\ContactsRepository")
+ * @ORM\Table(name="user")
+ */
+class User extends BaseUser
+{
+    /**
+     * @ORM\ManyToMany(targetEntity="User", mappedBy="myContacts")
+     */
+    private $contactWithMe;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="User", inversedBy="contactWithMe")
+     * @ORM\JoinTable(name="contacts",
+     *      joinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="id")},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="contact_user_id", referencedColumnName="id")}
+     *      )
+     */
+    private $myContacts;
+
+    public function __construct() {
+        parent::__construct();
+        $this->contactWithMe = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->myContacts = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    //
+
+    /**
+     * @ORM\Id
+     * @ORM\Column(type="integer")
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    protected $id;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     *
+     * @Assert\NotBlank(message="Entrer votre nom.", groups={"Registration", "Profile"})
+     * @Assert\Length(
+     *     min=3,
+     *     max=255,
+     *     minMessage="The name is too short.",
+     *     maxMessage="The name is too long.",
+     *     groups={"Registration", "Profile"}
+     * )
+     */
+    protected $nom;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     * @Assert\Length(
+     * min=0,
+     * max=255,
+     * minMessage="The adress is too short.",
+     * maxMessage="The adress is too long.",
+     * )
+     */
+    protected $adresse;
+
+    /**
+     * @ORM\Column(type="decimal", length=8, nullable=true)
+     * @Assert\Length(
+     * min=0,
+     * max=255,
+     * minMessage="The web site is too short.",
+     * maxMessage="The web site is too long.",
+     * )
+     */
+    protected $telephone;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     * @Assert\Length(
+     * min=0,
+     * max=255,
+     * minMessage="The web site is too short.",
+     * maxMessage="The web site is too long.",
+     * )
+     */
+    protected $siteweb;
+
+    /**
+     * Set nom
+     *
+     * @param string $nom
+     * @return User
+     */
+    public function setNom($nom)
+    {
+        $this->nom = $nom;
+
+        return $this;
+    }
+
+    /**
+     * Get nom
+     *
+     * @return string 
+     */
+    public function getNom()
+    {
+        return $this->nom;
+    }
+
+    /**
+     * Set adresse
+     *
+     * @param string $adresse
+     * @return User
+     */
+    public function setAdresse($adresse)
+    {
+        $this->adresse = $adresse;
+
+        return $this;
+    }
+
+    /**
+     * Get adresse
+     *
+     * @return string 
+     */
+    public function getAdresse()
+    {
+        return $this->adresse;
+    }
+
+    /**
+     * Set telephone
+     *
+     * @param string $telephone
+     * @return User
+     */
+    public function setTelephone($telephone)
+    {
+        $this->telephone = $telephone;
+
+        return $this;
+    }
+
+    /**
+     * Get telephone
+     *
+     * @return string 
+     */
+    public function getTelephone()
+    {
+        return $this->telephone;
+    }
+
+    /**
+     * Set siteweb
+     *
+     * @param string $siteweb
+     * @return User
+     */
+    public function setSiteweb($siteweb)
+    {
+        $this->siteweb = $siteweb;
+
+        return $this;
+    }
+
+    /**
+     * Get siteweb
+     *
+     * @return string 
+     */
+    public function getSiteweb()
+    {
+        return $this->siteweb;
+    }
+
+    /**
+     * Add contactWithMe
+     *
+     * @param \UserBundle\Entity\User $contactWithMe
+     * @return User
+     */
+    public function addContactWithMe(\UserBundle\Entity\User $contactWithMe)
+    {
+        $this->contactWithMe[] = $contactWithMe;
+
+        return $this;
+    }
+
+    /**
+     * Remove contactWithMe
+     *
+     * @param \UserBundle\Entity\User $contactWithMe
+     */
+    public function removeContactWithMe(\UserBundle\Entity\User $contactWithMe)
+    {
+        $this->contactWithMe->removeElement($contactWithMe);
+    }
+
+    /**
+     * Get contactWithMe
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getContactWithMe()
+    {
+        return $this->contactWithMe;
+    }
+
+    /**
+     * Add myContacts
+     *
+     * @param \UserBundle\Entity\User $myContacts
+     * @return User
+     */
+    public function addMyContact(\UserBundle\Entity\User $myContacts)
+    {
+        $this->myContacts[] = $myContacts;
+
+        return $this;
+    }
+
+    /**
+     * Remove myContacts
+     *
+     * @param \UserBundle\Entity\User $myContacts
+     */
+    public function removeMyContact(\UserBundle\Entity\User $myContacts)
+    {
+        $this->myContacts->removeElement($myContacts);
+    }
+
+    /**
+     * Get myContacts
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getMyContacts()
+    {
+        return $this->myContacts;
+    }
+}

@@ -1,0 +1,35 @@
+{% extends "CarnetBundle::layout.html.twig" %}
+
+{% block title %}
+    {{ parent() }} Membre
+{% endblock %}
+
+{% block body %}
+    Tous mes contacts :
+    <table class="table table-striped">
+    {% for contact in contacts %}
+            <tr>
+                <td>
+                    {{ contact.nom }}
+                </td>
+                <td>
+                    {{ contact.username }}
+                </td>
+                <td>
+                    {{ contact.adresse }}
+                </td>
+                <td>
+                    {{ contact.telephone }}
+                </td>
+                <td>
+                    {{ contact.siteweb }}
+                </td>
+                <td>
+                    <a href="{{ path('carnet_supprimer', {'id': contact.id}) }}">
+                        <button class="btn btn-danger" type="button">Delete</button>
+                    </a>
+                </td>
+            </tr>
+    {% endfor %}
+    </table>
+{% endblock %}
